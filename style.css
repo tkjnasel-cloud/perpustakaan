@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: #eef2f7;
+}
+
+.container{
+
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgb(0,0 ,0.2 );
+}
+
+h1{
+    text-align: center;
+    color: #2c3e50;
+}
+
+.subjudul{
+    text-align: center;
+    color: grey;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input,
+select{
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button{
+    padding: 14px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+button:hover{
+    background: #2980b9;
+}
+
+.info{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.daftarbuku{
+    margin-top: 40px;
+}
+
+.card{
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgb(0, 0, 0.1);
+}
+
+.card h3{
+    color: #2c3e50;
+}
+
+.card p{
+    margin-top: 8px;
+}
+
+.aksi{
+    margin-top: 15px;
+}
+
+.edit{
+    background: orange;
+    margin-right: 10px;
+}
+
+.hapus{
+    background: red;
+}
