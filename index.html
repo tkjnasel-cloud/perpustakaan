@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERPUSTAKAAAN PRIBADI</title>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📚 Perpustakaan Buku Pribadi</h1>
+    <p class="subjudul">kelola koleksi bukumu dengan mudah.</p>
+
+    <div class="form">
+        <h2>tambah buku</h2>
+
+        <input type="text" id="judul" placeholder="judul buku">
+        <input type="text" id="penulis" placeholder="nama penulis">
+        <input type="text" id="kategori" placeholder="kategori">
+        <input type="text" id="tahun" placeholder="tahun terbit">
+
+        <select id="status">
+            <option>belum dibaca</option>
+            <option>sedang dibaca</option>
+            <option>sudah dibaca</option>
+        </select>
+
+        <button id="btntambah">
+            ➕ Tambah Buku
+        </button>
+    </div>
+
+    <div class="info">
+        <h2>total buku : 
+            <span id="totalbuku">0</span>
+        </h2>
+    </div>
+
+    <div class="daftarbuku">
+        <h2>daftarbuku</h2>
+        <div id="liatbuku">
+
+        </div>
+
+    </div>
+    
+</div>
+    
+</body>
+</html>
