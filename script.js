@@ -25,6 +25,15 @@ function tambahbuku() {
         return;
     }
 
+    // meanamnbahkan ke firebase
+    db.collection("buku").add({
+        judul: judul,
+        penulis: penulis,
+        kategori: kategori,
+        tahun: tahun,
+        status: status
+    });
+
     //membuat card buku
     const card = document.createElement("div");
     card.className = "card";
