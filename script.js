@@ -32,7 +32,7 @@ function tambahbuku() {
         kategori: kategori,
         tahun: tahun,
         status: status
-    });
+    })
     .then((docRef) => {
     console.log("Berhasil disimpan:", docRef.id);
     })
