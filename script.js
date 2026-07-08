@@ -33,7 +33,12 @@ function tambahbuku() {
         tahun: tahun,
         status: status
     });
-
+    .then((docRef) => {
+    console.log("Berhasil disimpan:", docRef.id);
+    })
+    .catch((error) => {
+    console.error("Error:", error);
+    });
     //membuat card buku
     const card = document.createElement("div");
     card.className = "card";
