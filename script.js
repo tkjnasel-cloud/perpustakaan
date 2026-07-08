@@ -1,12 +1,42 @@
 const btntambah = document.getElementById("btntambah");
 const listbuku = document.getElementById("listbuku");
-const totalbuku = document.getElementById("totalbuku")
+const totalbuku = document.getElementById("totalbuku");
 
-let jumlahbuku = 0
-
-// tombol tambah buku
 btntambah.addEventListener("click", tambahbuku);
 
+// Menampilkan semua data dari Firestore
+function tampilkanBuku() {
+    listbuku.innerHTML = "";
+    let jumlahbuku = 0;
+
+    db.collection("buku").get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+
+            const card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `
+                <h3>📖 ${data.judul}</h3>
+                <p><b>Penulis :</b> ${data.penulis}</p>
+                <p><b>Kategori :</b> ${data.kategori}</p>
+                <p><b>Tahun :</b> ${data.tahun}</p>
+                <p><b>Status :</b> ${data.status}</p>
+            `;
+
+            listbuku.appendChild(card);
+            jumlahbuku++;
+        });
+
+        totalbuku.innerText = jumlahbuku;
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+}
+
+// Tambah buku
 function tambahbuku() {
     const judul = document.getElementById("judul").value;
     const penulis = document.getElementById("penulis").value;
@@ -14,18 +44,11 @@ function tambahbuku() {
     const tahun = document.getElementById("tahun").value;
     const status = document.getElementById("status").value;
 
-    //validasi
-    if (
-        judul === "" ||
-        penulis === "" ||
-        kategori === "" ||
-        tahun === ""
-    ) {
-        alert("lengkapi semua data buku!");
+    if (judul === "" || penulis === "" || kategori === "" || tahun === "") {
+        alert("Lengkapi semua data!");
         return;
     }
 
-    // meanamnbahkan ke firebase
     db.collection("buku").add({
         judul: judul,
         penulis: penulis,
@@ -33,53 +56,21 @@ function tambahbuku() {
         tahun: tahun,
         status: status
     })
-    .then((docRef) => {
-    console.log("Berhasil disimpan:", docRef.id);
+    .then(() => {
+        // Kosongkan form
+        document.getElementById("judul").value = "";
+        document.getElementById("penulis").value = "";
+        document.getElementById("kategori").value = "";
+        document.getElementById("tahun").value = "";
+        document.getElementById("status").selectedIndex = 0;
+
+        // Refresh daftar
+        tampilkanBuku();
     })
     .catch((error) => {
-    console.error("Error:", error);
+        console.error(error);
     });
-    //membuat card buku
-    const card = document.createElement("div");
-    card.className = "card";
+}
 
-    card.innerHTML = `
-        <h3> 📖 ${judul}</h3>
-
-         <p><b>Penulis :</b> ${penulis}</p>
-
-        <p><b>Kategori :</b> ${kategori}</p>
-
-        <p><b>Tahun :</b> ${tahun}</p>
-
-        <p><b>Status :</b> ${status}</p>
-
-        <div class="aksi">
-
-            <button class="hapus">
-                🗑 Hapus
-            </button>
-
-        </div>
-    `;
-
-    //tombol hapus
-
-    card.querySelector(".hapus").addEventListener("click", function() {
-        card.remove();
-        jumlahbuku --;
-        totalbuku.innerText = jumlahbuku;
-    });
-
-    //tampilkan buku
-    listbuku.appendChild(card);
-    jumlahbuku++;
-    totalbuku.innerText = jumlahbuku;
-
-    //kosongkan form
-    document.getElementById("judul").value = "";
-    document.getElementById("penulis").value = "";
-    document.getElementById("kategori").value = "";
-    document.getElementById("tahun").value = "";
-    document.getElementById("status").selectedIndex = 0;
-}    
+// Tampilkan data saat halaman dibuka
+tampilkanBuku();
